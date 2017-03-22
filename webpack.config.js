@@ -49,5 +49,8 @@ module.exports = {
             minimize: true,
             output: { comments: false }
         })
-    ]
+    ],
+    devServer: {
+        publicPath: '/bin/'
+    }
 };
