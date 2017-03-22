@@ -5,9 +5,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './src/index.js',
     output: {
-        filename: 'app.bundle.js',
+        filename: 'site.min.js',
         path: path.resolve(__dirname, 'bin')
     },
     module: {
@@ -43,12 +43,13 @@ module.exports = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('styles.min.css'),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: false },
-            minimize: true,
-            output: { comments: false }
-        })
+        new ExtractTextPlugin('site.min.css'),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
     ],
     devServer: {
         publicPath: '/bin/'
