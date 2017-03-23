@@ -39,6 +39,10 @@ module.exports = {
                         'less-loader'
                     ]
                 })
+            },
+            {
+                test: /\.woff$/,
+                loader: 'file-loader'
             }
         ]
     },
