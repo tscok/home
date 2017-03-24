@@ -2,6 +2,9 @@ import React from 'react';
 import purebem from 'purebem';
 
 import SiteHero from './SiteHero';
+import SiteSection from './SiteSection';
+
+import { Clock } from 'fun/components';
 
 import './Site.less';
 
@@ -13,6 +16,9 @@ const Site = React.createClass({
         return (
             <div className={ block() }>
                 <SiteHero />
+                <SiteSection>
+                    <Clock />
+                </SiteSection>
             </div>
         );
     }

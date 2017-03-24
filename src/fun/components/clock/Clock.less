@@ -1,0 +1,21 @@
+.clock {
+    width: 99px;
+    height: 99px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 0 auto;
+
+    &:after {
+        content: "";
+        display: block;
+        width: 9px;
+        height: 9px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: black;
+        position: relative;
+        z-index: 1;
+    }
+}
