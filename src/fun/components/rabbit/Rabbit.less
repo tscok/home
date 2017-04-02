@@ -1,0 +1,58 @@
+@import (reference) '~less/functions.less';
+
+.rabbit {
+    @color: #222323;
+
+    padding: 30px 30px 50px;
+    // background-color: @color;
+
+    @keyframes blink {
+        0%, 50% { visibility: hidden; }
+        51%, 100% { visibility: visible; }
+    }
+
+    @keyframes print {
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    &__prompt {
+        display: flex;
+        font-family: monospace;
+        font-size: 14px;
+        font-weight: bold;
+        text-shadow: 0 0 20px;
+        color: #5DF4A8;
+
+        &:before {
+            content: "> ";
+            display: block;
+            float: left;
+            padding-right: 10px;
+        }
+
+        &:after {
+            content: "_";
+            display: block;
+            float: right;
+            animation: blink 1150ms infinite;
+        }
+    }
+
+    &__char {
+        opacity: 0;
+        animation-name: print;
+        animation-duration: 0s;
+        animation-fill-mode: forwards;
+        transition: all 200ms;
+    }
+}
+
+.tablet-layout({
+
+    .rabbit {
+    }
+
+});
