@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack -p",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/tscok/home#readme",
   "dependencies": {
-    "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },

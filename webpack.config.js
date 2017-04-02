@@ -56,9 +56,13 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
+        compress: true,
+        hot: true,
+        inline: true,
         publicPath: '/bin/'
     }
 };
