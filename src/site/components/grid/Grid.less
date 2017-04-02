@@ -1,0 +1,27 @@
+@import (reference) '~less/functions.less';
+
+.grid {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    &__item {
+        display: flex;
+        width: 100%;
+    }
+}
+
+.desktop-layout({
+
+    .grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        &__item {
+            width: 50%;
+            min-height: 50%;
+        }
+    }
+
+});

@@ -1,0 +1,49 @@
+@import (reference) '~less/functions.less';
+
+
+.section {
+    padding: 60px 0;
+
+    &__content {
+        max-width: 1100px;
+        margin: 0 30px;
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__column {
+        flex: 1;
+        margin-bottom: 30px;
+    }
+}
+
+.tablet-layout({
+    .section {
+        &__row {
+            flex-direction: row;
+        }
+
+        &__column {
+            margin: 0 5%;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+});
+
+.desktop-layout({
+    .section {
+        &__content {
+            margin: 0 auto;
+        }
+    }
+});
