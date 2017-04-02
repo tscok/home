@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import purebem from 'purebem';
 
 import ClockFace from './ClockFace';
@@ -10,6 +10,26 @@ import './Clock.less';
 const block = purebem.of('clock');
 
 const Clock = React.createClass({
+
+    propTypes: {
+        colorful: PropTypes.bool
+    },
+
+    getDefaultProps() {
+        return {
+            colorful: false
+        };
+    },
+
+    childContextTypes: {
+        colorful: PropTypes.bool
+    },
+
+    getChildContext() {
+        return {
+            colorful: this.props.colorful
+        };
+    },
 
     getInitialState() {
         return {
@@ -33,12 +53,20 @@ const Clock = React.createClass({
     },
 
     render() {
+        const { colorful } = this.props;
+
+        if (this.props.children) {
+            return (
+                <div>{ this.props.children }</div>
+            );
+        }
+
         return (
-            <div className={ block() }>
+            <div className={ block({ colorful }) }>
                 <ClockFace />
-                <ClockHand unit="hour" />
-                <ClockHand unit="minute" />
                 <ClockHand unit="second" />
+                <ClockHand unit="minute" />
+                <ClockHand unit="hour" />
             </div>
         );
     }

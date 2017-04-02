@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import purebem from 'purebem';
 
-import './ClockFace.less';
 
-
-const block = purebem.of('clock-face');
+const block = purebem.of('clock');
 
 const ClockFace = React.createClass({
 
@@ -19,11 +17,13 @@ const ClockFace = React.createClass({
         return marks;
     },
 
-    renderMark(angle) {
-        const style = { transform: `rotate(${angle}deg)` };
+    renderMark(angle, index) {
+        const rotation = { transform: `rotate(${angle}deg)` };
 
         return (
-            <div className={ block('mark') } style={ style } />
+            <div className={ block('mark-container') } key={ index } style={ rotation }>
+                <div className={ block('mark') }></div>
+            </div>
         )
     },
 
@@ -31,8 +31,11 @@ const ClockFace = React.createClass({
         const marks = this.getMarks();
 
         return (
-            <div className={ block() }>
-                { marks.map((angle) => this.renderMark(angle)) }
+            <div className={ block('face') }>
+                {
+                    [].map.call(marks, this.renderMark)
+                }
+                <div className={ block('hub') }></div>
             </div>
         );
     }

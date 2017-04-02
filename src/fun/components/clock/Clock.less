@@ -1,21 +1,111 @@
 .clock {
-    width: 99px;
-    height: 99px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: 0 auto;
+    @color: black;
 
-    &:after {
-        content: "";
-        display: block;
-        width: 9px;
-        height: 9px;
-        margin: 0 auto;
-        border-radius: 50%;
-        background: black;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    &__face {
+        width: 100%;
+        height: 100%;
         position: relative;
-        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__mark-container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &__mark {
+        width: 1px;
+        height: 2px;
+        margin: 0 auto;
+        background-color: @color;
+    }
+
+    &__mark-container:nth-child(5n+1) &__mark {
+        height: 6px;
+    }
+
+    &__hand-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        &--hour {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+        }
+
+        &--minute {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+        }
+
+        &--second {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+        }
+    }
+
+    &__hand {
+        margin: 0 auto;
+        background-color: @color;
+
+        &--hour {
+            width: 5px;
+            height: 50%;
+        }
+
+        &--minute {
+            width: 3px;
+            height: 50%;
+        }
+
+        &--second {
+            width: 1px;
+            height: 65%;
+        }
+    }
+
+    &__value {
+        display: none;
+    }
+
+    &__hub {
+        display: block;
+        width: 7%;
+        height: 7%;
+        border-radius: 50%;
+        background-color: @color;
+    }
+
+    // Experimental
+    
+    &--colorful &__face,
+    &--colorful &__hand {
+        display:  none;
+    }
+    &--colorful &__hand-container {
+        transition: all .5s;
+        box-shadow: 0 0 20px rgba(0,0,0,.2);
+        border-top: 2px solid white;
+    }
+    &--colorful &__value {
+        display: block;
+        color: white;
+        padding: 5px 10px;
     }
 }

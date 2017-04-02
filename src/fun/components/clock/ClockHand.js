@@ -1,13 +1,20 @@
 import React, { PropTypes } from 'react';
 import purebem from 'purebem';
-import moment from 'moment';
 
-import './ClockHand.less';
+import {
+    getAngle,
+    getColor,
+    getTime
+} from './utils';
 
 
-const block = purebem.of('clock-hand');
+const block = purebem.of('clock');
 
 const ClockHand = React.createClass({
+
+    contextTypes: {
+        colorful: PropTypes.bool
+    },
 
     propTypes: {
         unit: PropTypes.oneOf([
@@ -17,53 +24,32 @@ const ClockHand = React.createClass({
         ]).isRequired
     },
 
-    isHour() {
-        return this.props.unit === 'hour';
-    },
+    getStyle() {
+        const angle = getAngle(this.props.unit);
+        const color = getColor(angle);
+        const style = { transform: `rotate(${angle}deg)` };
 
-    getAngle() {
-        const steps = this.isHour() ? 360/12 : 360/60;
-        const { token } = this.getToken();
-        const angle = this.getTime(token) * steps;
-
-        if (this.isHour()) {
-            const decimal = this.getTime(token) / 60;
-            return angle + (decimal * steps);
+        if (this.context.colorful) {
+            style.backgroundColor = color;
         }
 
-        return angle;
+        return style;
     },
 
-    getColor(angle = 0) {
-        return `hsla(${angle}, 80%, 60%, .75)`;
-    },
-
-    getTime(token = 's') {
-        return moment().format(token);
-    },
-
-    getToken() {
-        switch (this.props.unit) {
-            case 'hour':
-                return { token: 'h', displayToken: 'HH' };
-                break;
-            case 'minute':
-                return { token: 'm', displayToken: 'mm' };
-                break;
-            case 'second':
-                return { token: 's', displayToken: 'ss' };
-        }
+    getValue() {
+        const time = getTime(this.props.unit);
+        return time < 10 ? `0${time}` : time;
     },
 
     render() {
         const { unit } = this.props;
-        const angle = this.getAngle();
-        const style = {
-            transform: `rotate(${angle}deg)`
-        };
-
         return (
-            <div className={ block({ unit }) } style={ style }></div>
+            <div className={ block('hand-container', { unit }) } style={ this.getStyle() }>
+                <div className={ block('hand', { unit }) }></div>
+                <div className={ block('value') }>
+                    { this.getValue() }
+                </div>
+            </div>
         );
     }
 
