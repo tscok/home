@@ -1,8 +1,8 @@
 import React from 'react';
 import purebem from 'purebem';
 
-import SiteHero from './SiteHero';
-import SiteSection from './SiteSection';
+import Color from './Color';
+import Grid from './grid/Grid';
 
 import { Clock } from 'fun/components';
 
@@ -15,10 +15,13 @@ const Site = React.createClass({
     render() {
         return (
             <div className={ block() }>
-                <SiteHero />
-                <SiteSection>
-                    <Clock />
-                </SiteSection>
+                <Clock>
+                    <Grid>
+                        <Color unit="hour" />
+                        <Color unit="minute" />
+                        <Color unit="second" />
+                    </Grid>
+                </Clock>
             </div>
         );
     }
