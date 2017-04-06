@@ -5,14 +5,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     transition: background .5s;
     border: 10px solid white;
-    padding: 20px;
+    padding: 20px 10vw;
 
     &__text {
         display: flex;
         flex-direction: column;
+        text-align: center;
     }
 
     &__value {
@@ -64,7 +65,8 @@
 
         &--hour {
             width: 4px;
-            height: 50%;
+            height: 30%;
+            margin-top: 20%;
             transform-origin: center bottom;
         }
 
@@ -89,10 +91,11 @@
 .desktop-layout({
     .color {
         flex-direction: column-reverse;
+        justify-content: space-around;
+        padding: 20px;
 
         &__text {
             flex: initial;
-            text-align: center;
         }
 
         &__value--angle {

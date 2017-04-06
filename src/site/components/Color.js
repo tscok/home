@@ -34,12 +34,11 @@ const Color = React.createClass({
 
     renderTime() {
         const { unit } = this.props;
-        const time = getTime(unit);
-        const type = unit === 'hour' ? 'hrs' : unit.slice(0,3);
+        const label = unit.slice(0,1).toUpperCase() + unit.slice(1);
 
         return (
             <div className={ block('value', ['time']) }>
-                { `${time} ${type}` } 
+                { label } { getTime(unit) }
             </div>
         );
     },
