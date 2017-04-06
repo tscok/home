@@ -20,7 +20,7 @@ export function getAngle(unit = 'hour') {
 }
 
 export function getColor(angle = 0) {
-    return `hsl(${angle}, 80%, 70%)`;
+    return `hsl(${angle}, 80%, 65%)`;
 }
 
 export function getTime(unit = 'hour') {
@@ -28,7 +28,9 @@ export function getTime(unit = 'hour') {
 
     switch (unit) {
         case 'hour':
-            return d.getHours();
+            const hour = d.getHours();
+            const rest = hour % 12;
+            return rest ? rest : 12;
         case 'minute':
             return d.getMinutes();
         case 'second':
